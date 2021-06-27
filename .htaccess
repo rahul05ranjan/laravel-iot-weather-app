@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^(www.)?YOUR_DOMAIN.com$
+RewriteCond %{REQUEST_URI} !^/YOUR_FOLDER/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /YOUR_FOLDER/public/$1
+RewriteCond %{HTTP_HOST} ^(www.)?YOUR_DOMAIN.com$
+RewriteRule ^(/)?$ YOUR_FOLDER/public/index.php [L]
