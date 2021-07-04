@@ -30,13 +30,22 @@ use Carbon\Carbon;
       </div>
     </nav>
       <div class="container">
-      <div class="row">
-      	<div class="col-md-4 mt-2">
+      <div class="row mt-3">
+      	<div class="col-md-4">
       		<div class="card" style="width: 18rem;">
               <div class="card-body">
-                <h1 class="card-title"><small>Temperature : </small>{{ $model->temperature }}</h1>
-                <h6>{{ $model->created_at->diffForHumans() }}</h6>
-                <span>{{ $model->created_at }}</span>
+                <h1 class="card-title"><small>Temperature</h1>
+                <h3></small>{{ $model->temperature }} &#8451;</h3>
+                <h6>{{ $model->updated_at->diffForHumans() }}</h6>
+              </div>
+            </div>
+      	</div>
+      	<div class="col-md-4">
+      		<div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h1 class="card-title"><small>Humidity</h1>
+                <h3></small>{{ $model->humidity }} %</h3>
+                <h6>{{ $model->updated_at->diffForHumans() }}</h6>
               </div>
             </div>
       	</div>
@@ -48,7 +57,7 @@ use Carbon\Carbon;
          </div>
       </div>
       <?php 
-      $getAll = Weather::whereDate('created_at', Carbon::today())->get();
+      $getAll = Weather::whereDate('updated_at', Carbon::today())->get();
       $temperature = [];
       $humidity = [];
       $date = [];
@@ -56,8 +65,8 @@ use Carbon\Carbon;
           foreach ($getAll as $value) {
               $temperature[] = $value->temperature;
               $humidity[] = $value->humidity;
-              $dt = new DateTime($value->created_at);
-              $dt->setTimezone(new DateTimeZone('UTC'));
+              $dt = new DateTime($value->updated_at);
+              $dt->setTimezone(new DateTimeZone('Asia/Kolkata'));
               $date[] = $dt->format('Y-m-d\TH:i:s.u\Z');
           }
           

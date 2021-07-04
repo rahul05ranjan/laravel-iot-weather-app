@@ -24,12 +24,10 @@ class WeatherController extends Controller
      */
     public function create(Request $request)
     {
-        date_default_timezone_set('Asia/Kolkata');
         if ($request->temperature != 'nan' && $request->humidity != 'nan') {
             $model = new Weather();
             $model->temperature = $request->temperature;
             $model->humidity = $request->humidity;
-            $model->created_at = date('Y-m-d h:i:s');
             if ($model->save()) {
                 echo "Saved";
             }else {
