@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeatherController;
+use App\Models\Weather;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,9 @@ use App\Http\Controllers\WeatherController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $model = Weather::latest()->first();
+    
+    return view('welcome', ['model' => $model]);
 });
 
 Route::resource('weather', WeatherController::class);

@@ -30,6 +30,17 @@ use Carbon\Carbon;
       </div>
     </nav>
       <div class="container">
+      <div class="row">
+      	<div class="col-md-4 mt-2">
+      		<div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h1 class="card-title"><small>Temperature : </small>{{ $model->temperature }}</h1>
+                <h6>{{ $model->created_at->diffForHumans() }}</h6>
+                <span>{{ $model->created_at }}</span>
+              </div>
+            </div>
+      	</div>
+      </div>
          <div class="row">
             <div class="col-md-12">
                <div id="chart"></div>
