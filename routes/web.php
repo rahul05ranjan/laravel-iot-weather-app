@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeatherController;
 use App\Models\Weather;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,7 @@ use App\Models\Weather;
 */
 
 Route::get('/', function () {
-    $model = Weather::latest()->first();
-    
+    $model = Weather::all()->last();
     return view('welcome', ['model' => $model]);
 });
 
