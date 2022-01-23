@@ -18,7 +18,16 @@ use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     $model = Weather::all()->last();
-    return view('welcome', ['model' => $model]);
+    $temp = Weather::whereDay('created_at', now()->day);
+    $maxTemp = $temp->max('temperature');
+    $minTemp = $temp->min('temperature');
+    $averageTemp = $temp->average('temperature');
+    return view('welcome', [
+        'model' => $model, 
+        'maxTemp' => $minTemp, 
+        'minTemp' => $maxTemp, 
+        'averageTemp' => $averageTemp
+    ]);
 });
 
 Route::resource('weather', WeatherController::class);
